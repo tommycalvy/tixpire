@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Jesse Showalter Starter Kit</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <script src="https://www.gstatic.com/firebasejs/5.4.2/firebase.js"></script>
+    <link rel="stylesheet" href="assets/css/main.min.css" />
+</head>
+<body>
+  <section id="header">
+    <div class="wrapper">
+      <nav>
+        <ul class="main-nav">
+            <li class="logo"><a href="#">UM Club Tennis</a></li>
+          <div id="responsive-nav" class="responsive-nav">
+            <li><a href="javascript:void(0);" onclick="signupOrLoginPopUp()">Signup/Login</a></li>
+            <li><a href="#">Link</a></li>
+            <li><a href="#">Link</a></li>
+          </div>
+            <li class="nav-toggle"><a href="javascript:void(0);" onclick="showNav()"><img src="assets/img/menu-icon.svg" alt=""></a></li>
+        </ul>
+        <div id="popup-box1" class="popup-position">
+          <div class="popup-wrapper">
+            <div class="popup-container">
+              <h3>Sign Up Or Login</h3>
+              <input id="txtEmail" type="email" placeholder="Email">
+              <input id="xtPassword" type="password" placeholder="Password">
+              <button id="btnLogin" class="btn btn-action">Log in</button>
+              <button id="btnSignUp" class="btn btn-secondary">Sign Up</button>
+              <button id="btnLogout" class="btn btn-action hide">Log Out</button>
+              <p><a href="javascript:void(0);" onclick="signupOrLoginPopUp()">Close popup box</a></p>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </div>
+  </section>
+  <section id="content">
+    <div class="wrapper">
+      <h1>Tennis Club ELO Ratings</h1>
+      <canvas id="myChart" width="400" height="400"></canvas>
+    </div>
+  </section>
+
+  <script src="./assets/js/vendors.js"></script>
+  <script src="./assets/js/app.js"></script>
+</body>
+</html>
