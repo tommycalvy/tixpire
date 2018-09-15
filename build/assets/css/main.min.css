@@ -190,6 +190,7 @@ html {
   box-sizing: inherit; }
 
 body {
+  background-color: black;
   font-size: 14px;
   line-height: 1.6;
   font-size: 14px;
@@ -326,89 +327,6 @@ hr {
   margin: 10px 0 30px;
   height: 0; }
 
-#header {
-  background-color: green;
-  height: 100px; }
-
-.main-nav {
-  display: flex;
-  margin-top: 20px;
-  padding: 0;
-  transition: all 0.2s ease; }
-  .main-nav li.logo {
-    margin-right: auto;
-    padding-left: 15px;
-    font-weight: 900;
-    font-size: 30px;
-    text-transform: none; }
-    .main-nav li.logo a {
-      padding: 0; }
-  .main-nav li {
-    list-style: none;
-    display: inline-block; }
-  .main-nav a {
-    color: #FF851B;
-    display: block;
-    border-radius: 4px;
-    padding: 10px 50px;
-    text-decoration: none;
-    font-weight: 900;
-    text-transform: uppercase;
-    transition: all 0.2s ease; }
-  .main-nav a:hover, .main-nav a:active {
-    color: white; }
-
-h1 {
-  text-align: center; }
-
-li.nav-toggle {
-  display: none; }
-
-@media screen and (max-width: 750px) {
-  li.nav-toggle {
-    display: block;
-    z-index: 100; }
-  .responsive-nav {
-    display: none; }
-  .responsive-nav.unfold {
-    display: block;
-    width: 100%;
-    background: #FF851B;
-    position: absolute;
-    top: 0;
-    right: 0; }
-  .responsive-nav.unfold li {
-    display: block; }
-  .responsive-nav.unfold a {
-    padding: 40px;
-    display: block;
-    text-align: center;
-    color: green; }
-  .responsive-nav.unfold a:hover {
-    transform: translate(0);
-    color: white; } }
-
-.popup-position {
-  position: fixed;
-  top: 0;
-  left: 0;
-  background-color: rgba(0, 0, 0, 0.7);
-  width: 100%;
-  height: 100%; }
-
-.popup-position.open {
-  display: none; }
-
-.popup-wrapper {
-  width: 500px;
-  margin: 70px auto;
-  text-align: left; }
-
-.popup-container {
-  background-color: white;
-  padding: 20px;
-  border-radius: 4px; }
-
 .flex-video {
   height: 0;
   margin-bottom: 0.88889rem;
@@ -425,3 +343,7 @@ li.nav-toggle {
   top: 0;
   width: 100%;
   left: 0; }
+
+body h1 {
+  color: white;
+  text-align: center; }
