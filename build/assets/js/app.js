@@ -1,1 +1,1 @@
-window.sr=ScrollReveal();
+function showNav(){var e=document.getElementById("responsive-nav");"responsive-nav"===e.className?e.className+=" unfold":e.className="responsive-nav"}function signupOrLoginPopUp(){var e=document.getElementById("popup-box1");"popup-position"===e.className?e.className+=" open":e.className="popup-position"}window.sr=ScrollReveal();

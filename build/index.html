@@ -7,6 +7,30 @@
     <link rel="stylesheet" href="assets/css/main.min.css" />
 </head>
 <body>
+  <section id="header">
+    <div class="wrapper">
+      <nav>
+        <ul class="main-nav">
+            <li class="logo"><a href="#">Tixpire</a></li>
+          <div id="responsive-nav" class="responsive-nav">
+            <li><a href="javascript:void(0);" onclick="signupOrLoginPopUp()">Signup/Login</a></li>
+            <li><a href="#">Link</a></li>
+            <li><a href="#">Link</a></li>
+          </div>
+            <li class="nav-toggle"><a href="javascript:void(0);" onclick="showNav()"><img src="assets/img/menu-icon.svg" alt=""></a></li>
+        </ul>
+        <div id="popup-box1" class="popup-position">
+          <div class="popup-wrapper">
+            <div class="popup-container">
+              <h3>Popup Box 1</h3>
+              <p>Congratulations you have opened popup box 1</p>
+              <p><a href="javascript:void(0);" onclick="signupOrLoginPopUp()">Close popup box</a></p>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </div>
+  </section>
   <section id="page-home">
       <div class="wrapper">
           <h1>Tixpire</h1>
