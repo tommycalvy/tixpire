@@ -190,7 +190,6 @@ html {
   box-sizing: inherit; }
 
 body {
-  background-color: black;
   font-size: 14px;
   line-height: 1.6;
   font-size: 14px;
@@ -348,7 +347,7 @@ hr {
     list-style: none;
     display: inline-block; }
   .main-nav a {
-    color: #111;
+    color: black;
     display: block;
     border-radius: 4px;
     padding: 10px 50px;
@@ -358,6 +357,31 @@ hr {
     transition: all 0.2s ease; }
   .main-nav a:hover, .main-nav a:active {
     color: white; }
+
+.event-nav {
+  display: flex;
+  margin-top: 30px;
+  padding: 0;
+  text-align: justify;
+  width: 100%;
+  transition: all 0.2s ease; }
+  .event-nav li {
+    list-style: none;
+    display: inline-block;
+    background-color: black;
+    text-align: justify;
+    width: 100%; }
+  .event-nav a {
+    color: white;
+    display: block;
+    border-radius: 4px;
+    padding: 5px 5px;
+    text-decoration: none;
+    font-weight: 900;
+    font-size: 20px;
+    text-align: center;
+    text-transform: uppercase;
+    transition: all 0.2s ease; }
 
 h1 {
   text-align: center; }
@@ -387,7 +411,7 @@ li.nav-toggle {
     color: white; }
   .responsive-nav.unfold a:hover {
     transform: translate(0);
-    color: white; } }
+    color: #e1413d; } }
 
 .popup-position {
   display: none; }
@@ -427,3 +451,17 @@ li.nav-toggle {
   top: 0;
   width: 100%;
   left: 0; }
+
+#page-home {
+  background-color: white; }
+
+.to-scew {
+  background-color: #1d2643;
+  position: absolute;
+  padding-top: 75px;
+  margin-top: 150px;
+  left: 0px;
+  right: 0px;
+  height: 290px;
+  color: white;
+  transform: skewY(20deg); }
