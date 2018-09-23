@@ -190,7 +190,6 @@ html {
   box-sizing: inherit; }
 
 body {
-  background-color: black;
   font-size: 14px;
   line-height: 1.6;
   font-size: 14px;
@@ -358,6 +357,26 @@ hr {
     transition: all 0.2s ease; }
   .main-nav a:hover, .main-nav a:active {
     color: white; }
+
+.event-nav {
+  display: flex;
+  margin-top: 20px;
+  padding: 0;
+  transition: all 0.2s ease; }
+  .event-nav li {
+    list-style: none;
+    display: inline-block;
+    background-color: black; }
+  .event-nav a {
+    color: white;
+    display: block;
+    border-radius: 4px;
+    padding: 10px 50px;
+    text-decoration: none;
+    font-weight: 900;
+    text-transform: uppercase;
+    text-align: justify;
+    transition: all 0.2s ease; }
 
 h1 {
   text-align: center; }
