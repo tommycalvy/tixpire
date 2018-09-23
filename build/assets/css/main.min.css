@@ -330,6 +330,10 @@ hr {
   background-color: #e1413d;
   height: 100px; }
 
+#event-header {
+  background-color: #111;
+  height: 40px; }
+
 .main-nav {
   display: flex;
   margin-top: 20px;
@@ -337,9 +341,8 @@ hr {
   transition: all 0.2s ease; }
   .main-nav li.logo {
     margin-right: auto;
-    padding-left: 15px;
-    font-weight: 900;
-    font-size: 30px;
+    padding-left: 20px;
+    width: 30px;
     text-transform: none; }
     .main-nav li.logo a {
       padding: 0; }
@@ -360,26 +363,29 @@ hr {
 
 .event-nav {
   display: flex;
-  margin-top: 20px;
   padding: 0;
+  margin: 0;
   transition: all 0.2s ease; }
   .event-nav li {
     list-style: none;
     display: inline-block;
-    background-color: black; }
+    width: 100%; }
   .event-nav a {
     color: white;
     display: block;
     border-radius: 4px;
-    padding: 10px 50px;
+    padding: 10px 35px;
     text-decoration: none;
     font-weight: 900;
     text-transform: uppercase;
-    text-align: justify;
+    text-align: center;
     transition: all 0.2s ease; }
+  .event-nav a:hover, .event-nav a:active {
+    color: pink; }
 
-h1 {
-  text-align: center; }
+.resize {
+  width: 125px;
+  height: auto; }
 
 li.nav-toggle {
   display: none; }
@@ -446,3 +452,14 @@ li.nav-toggle {
   top: 0;
   width: 100%;
   left: 0; }
+
+#page-home h1 {
+  text-align: center; }
+
+#page-home .background {
+  z-index: 100;
+  top: 200px;
+  left: 0;
+  right: 0;
+  width: 100%;
+  position: absolute; }
