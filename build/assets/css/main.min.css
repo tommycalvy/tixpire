@@ -500,3 +500,46 @@ li.nav-toggle {
   right: 0;
   width: 100%;
   position: absolute; }
+
+.ticket-boxes {
+  display: inline-flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  height: 300px;
+  width: 100%; }
+  .ticket-boxes .box1 {
+    background-color: #416efb;
+    width: 200px;
+    height: 300px;
+    padding: 20px 20px;
+    margin: 0px 20px 20px 20px; }
+  .ticket-boxes .box2 {
+    background-color: #416efb;
+    width: 200px;
+    height: 300px;
+    padding: 20px 20px;
+    margin: 30px 20px 20px 20px; }
+  .ticket-boxes .box3 {
+    background-color: #416efb;
+    width: 200px;
+    height: 300px;
+    padding: 20px 20px;
+    margin: 60px 20px 20px 20px; }
+  .ticket-boxes .box4 {
+    background-color: #416efb;
+    width: 200px;
+    height: 300px;
+    padding: 20px 20px;
+    margin: 0px 20px 20px 20px; }
+  .ticket-boxes .box5 {
+    background-color: #416efb;
+    width: 200px;
+    height: 300px;
+    padding: 20px 20px;
+    margin: 30px 20px 20px 20px; }
+  .ticket-boxes .box6 {
+    background-color: #416efb;
+    width: 200px;
+    height: 300px;
+    padding: 20px 20px;
+    margin: 30px 20px 20px 20px; }
