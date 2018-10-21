@@ -22,15 +22,19 @@
             <li class="nav-toggle"><a href="javascript:void(0);" onclick="showNav()"><img src="assets/img/menu-icon.svg" alt=""></a></li>
         </ul>
         <div class="user-search">
-          <form>
-            <input type="text" name="userSearchTerm" value="Search Event, City, or Artist">
+          <form action="/search" method="post">
+            <input type="text" name="userSearchTerms" value="Search Event, City, or Artist">
           </form>
         </div>
         <div id="popup-box1" class="popup-position">
           <div class="popup-wrapper">
             <div class="popup-container">
-              <h3>Popup Box 1</h3>
-              <p>Congratulations you have opened popup box 1</p>
+              <form action="/login" method="post">
+                Username:<input type="text" name="username">
+                Password:<input type="password" name="password">
+                <input type="hidden" name="token" value="{{.}}">
+                <input type="submit" value="Login">
+              </form>
               <p><a href="javascript:void(0);" onclick="signupOrLoginPopUp()">Close popup box</a></p>
             </div>
           </div>
@@ -55,7 +59,7 @@
       <img src="assets/img/offset-rectangle.svg">
     </div>
     <div class="wrapper">
-      <h1>Ticket Layaway</h1>
+      <h2>Ticket Layaway Coming Soon</h2>
       <div class="ticket-boxes">
         <div class="box1">
         </div>

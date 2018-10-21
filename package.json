@@ -1,12 +1,12 @@
 {
-    "name": "iamjesseshow-starter-project",
+    "name": "tixpire",
     "version": "1.0.0",
-    "description": "Starter Project",
+    "description": "tixpire website",
     "main": "index.html",
     "scripts": {
         "test": "echo \"Error: no test specified\" && exit 1"
     },
-    "author": "Jesse Showalter",
+    "author": "Tommy Calvy",
     "license": "ISC",
     "devDependencies": {
         "browser-sync": "^2.7.11",

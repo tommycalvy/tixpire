@@ -435,7 +435,7 @@ li.nav-toggle {
   .responsive-nav.unfold {
     display: block;
     width: 100%;
-    background: #1d2643;
+    background: dimgray;
     position: absolute;
     padding: 15px;
     top: 0;
@@ -490,7 +490,7 @@ li.nav-toggle {
   width: 100%;
   left: 0; }
 
-#page-home h1 {
+#page-home h2 {
   text-align: center; }
 
 #page-home .background {
@@ -502,7 +502,7 @@ li.nav-toggle {
   position: absolute; }
 
 .ticket-boxes {
-  display: inline-flex;
+  display: none;
   flex-wrap: wrap;
   justify-content: space-around;
   height: 300px;

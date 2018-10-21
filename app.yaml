@@ -1,6 +1,5 @@
 runtime: go
 api_version: go1
-version: v1
 
 handlers:
 
@@ -45,4 +44,5 @@ skip_files:
   - ^fabfile\.py
   - ^testrunner\.py
   - ^grunt\.js
+  - ^source/(.*/)?
   - ^node_modules/(.*/)?
