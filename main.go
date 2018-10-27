@@ -13,7 +13,7 @@ import (
 	"time"
 	"strconv"
 
-	"google.golang.org/appengine"
+	//"google.golang.org/appengine"
 )
 
 
@@ -46,9 +46,7 @@ func login(w http.ResponseWriter, r *http.Request) {
     }
 }
 
-func search(w http.ResponseWriter, r *http.Request) {
 
-}
 
 func indexHandler(w http.ResponseWriter, r *http.Request) {
 	// if statement redirects all invalid URLs to the root homepage.
@@ -64,8 +62,7 @@ func indexHandler(w http.ResponseWriter, r *http.Request) {
 
 
 func main() {
-	http.HandleFunc("/search", search)
 	http.HandleFunc("/login", login)
 	http.HandleFunc("/", indexHandler)
-	appengine.Main()
+	http.ListenAndServe(":8080", nil)
 }
