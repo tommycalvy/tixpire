@@ -12,8 +12,8 @@ import (
 	"crypto/md5"
 	"time"
 	"strconv"
-
-	//"google.golang.org/appengine"
+	"google.golang.org/appengine"
+	//"log"
 )
 
 
@@ -56,13 +56,14 @@ func indexHandler(w http.ResponseWriter, r *http.Request) {
   	http.Redirect(w, r, "/", http.StatusFound)
     return
   }
-
+	//tmpl, err := template.ParseFiles("layout.html")
 	fmt.Fprintln(w, "Hello, Gopher Network!")
 }
 
 
 func main() {
-	http.HandleFunc("/login", login)
+	appengine.Main()
+	//http.HandleFunc("/login", login)
 	http.HandleFunc("/", indexHandler)
-	http.ListenAndServe(":8080", nil)
+	//log.Fatal(http.ListenAndServe(":8080", http.FileServer(http.Dir("/build/assets/templates"))))
 }

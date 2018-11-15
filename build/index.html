@@ -1,30 +1,30 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>Tixpire</title>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <link rel="stylesheet" href="assets/css/main.min.css" />
+  <title>Tixpire</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="stylesheet" href="assets/css/main.min.css" />
 </head>
 <body>
+  <header>
   <section id="header">
     <div class="wrapper">
       <nav>
         <ul class="main-nav">
-            <li class="logo"><a href="#"><img class="resize" src="assets/img/tixpire-logo.png"></a></li>
+            <li class="logo"><a href="https://tixpire.com"><img class="resize" src="assets/img/tixpire-logo.png"></a></li>
           <div id="responsive-nav" class="responsive-nav">
-            <li><a href="#">HOME</a></li>
-            <li><a href="javascript:void(0);" onclick="signupOrLoginPopUp()">Login</a></li>
-            <li><a href="#">CITY</a></li>
-            <li><a href="#">FAQ</a></li>
-            <li><a href="#">VIP</a></li>
+            <li><a href="https://www.tixpire.com/">HOME</a></li>
+            <li><a href="https://tixpire.store/account/login">Login</a></li>
+            <!---add this in after map installed
+            <li><a href="#">CITY</a></li>--->
+            <li><a href="https://tixpire.store/pages/faqs">FAQ</a></li>
+            <li><a href="https://tixpire.store/pages/vip-pass">VIP</a></li>
           </div>
             <li class="nav-toggle"><a href="javascript:void(0);" onclick="showNav()"><img src="assets/img/menu-icon.svg" alt=""></a></li>
         </ul>
-        <div class="user-search">
-          <form action="/search" method="post">
-            <input type="text" name="userSearchTerms" value="Search Event, City, or Artist">
-          </form>
+        <div class="search-events">
+          <a href="https://tixpire.store/pages/events"><button type="button">Search Events</button></a>
         </div>
         <div id="popup-box1" class="popup-position">
           <div class="popup-wrapper">
@@ -46,37 +46,62 @@
     <div class="wrapper">
       <nav>
         <ul class="event-nav">
-          <li><a href="#">Sports</a></li>
-          <li><a href="#">Music</a></li>
-          <li><a href="#">Comedy</a></li>
-          <li><a href="#">Other</a></li>
+          <li><a href="https://docs.google.com/forms/d/e/1FAIpQLSfOgOypih2jn0WB3PpBUsTLCK-BbVmRCdbr5zG_O6h0QBNn-A/viewform?usp=sf_link">Sports</a></li>
+          <li><a href="https://docs.google.com/forms/d/e/1FAIpQLSfOgOypih2jn0WB3PpBUsTLCK-BbVmRCdbr5zG_O6h0QBNn-A/viewform?usp=sf_link">Music</a></li>
+          <li><a href="https://docs.google.com/forms/d/e/1FAIpQLSfOgOypih2jn0WB3PpBUsTLCK-BbVmRCdbr5zG_O6h0QBNn-A/viewform?usp=sf_link">Comedy</a></li>
+          <li class="event-other"><a href="https://docs.google.com/forms/d/e/1FAIpQLSfOgOypih2jn0WB3PpBUsTLCK-BbVmRCdbr5zG_O6h0QBNn-A/viewform?usp=sf_link">Other</a></li>
         </ul>
       </nav>
     </div>
   </section>
+</header>
   <section id="page-home">
     <div class="background">
       <img src="assets/img/offset-rectangle.svg">
     </div>
-    <div class="wrapper">
-      <h2>Ticket Layaway Coming Soon</h2>
-      <div class="ticket-boxes">
-        <div class="box1">
+    <div class="text-wrapper">
+      <div class="text-container">
+        <div class="how-to">
+          <h2>Event Ticket Payment Plans</h2>
+          <h4>Tixpire was founded to provide alternatives to the upfront costs of attending your favorite live entertainment events. Expensive ticket prices are a deterrent for most, but we’ve decided they shouldn’t stop you. Tixpire offers Payment Plans for any ticket-based event imaginable. Simply follow the steps below to make tickets to your dream event affordable and stress free.</h4>
+          <br><h4> LIVE YOUR LIFE- TIXPIRE Team </h4></br>
         </div>
-        <div class="box2">
-        </div>
-        <div class="box3">
-        </div>
-        <div class="box4">
-        </div>
-        <div class="box5">
-        </div>
-        <div class="box6">
+        <div class="steps">
+          <ol>
+            <li>Find the event you want to attend and copy the website URL for that event</li>
+            <li>Click on the tab that corresponds to your type of event on the navigation bar above (SPORTS, MUSIC, COMEDY, OTHER)</li>
+            <li>You will be directed to an order form. Simply drop the URL from the event you wish to attend into the form and continue to fill out the rest of your information</li>
+            <li>Once you've completed the form, you will be contacted and sent an invoice via your preffered contact method within 24 hours. Invoices are delivered via a <u>secure payment solution (currently PayPal)</u></li>
+            <li>After you recieve and complete your invoice request, all you have to do is make all of your payments on time until your event tickets are paid in full</li>
+            <li>Your tickets will be mailed or emailed to you as soon as your final payment processes</li>
+            <li>This is the <b>MOST IMPORTANT</b> step: Download your tickets, enjoy the show, and <b>LIVE YOUR LIFE!</b></li>
+          </ol>
         </div>
       </div>
     </div>
   </section>
+  <footer id="footer">
+    <div class="footer-wrapper">
+      <div class="terms-conditions">
+        <ul>
+          <li><a href="https://tixpire.store/policies/privacy-policy">Privacy</a></li>
+          <li><a href="https://tixpire.store/policies/refund-policy">Refunds</a></li>
+          <li><a href="https://tixpire.store/policies/terms-of-service">Terms and Policies</a></li>
+          <li>Copyright 2018</li>
+        </ul>
+      </div>
+      <div class="social">
+        <ul>
+          <li><a href="https://facebook.com/tixpire"><img src="assets/img/facebook.svg"></a></li>
+          <li><a href="https://twitter.com/tixpire"><img src="assets/img/twitter.svg"></a></li>
+          <li><a href="https://instagram.com/tixpire"><img src="assets/img/instagram.svg"></a></li>
+        </ul>
+      </div>
+    </div>
+  </footer>
+
   <script src="./assets/js/vendors.js"></script>
   <script src="./assets/js/app.js"></script>
+
 </body>
 </html>

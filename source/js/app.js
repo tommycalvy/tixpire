@@ -26,3 +26,14 @@ function signupOrLoginPopUp() {
   }
 
 }
+
+function calendarApp() {
+  window.eventCalId=3308;
+  var integrationScript = document.createElement("script");
+  integrationScript.async = 1;
+  integrationScript.setAttribute("src", "https://api.eventcalendarapp.com/integration-script.js");
+  document.head.appendChild(integrationScript);
+  if (window.eventCalendarAppUtilities) {
+    window.eventCalendarAppUtilities.init("0a94d5e1-6d05-4ee6-a962-24471e23ed95");
+  }
+}
