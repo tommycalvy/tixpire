@@ -480,6 +480,8 @@ li.nav-toggle {
     #footer .footer-wrapper .terms-conditions {
       display: inline-block;
       margin-top: 20px; }
+      #footer .footer-wrapper .terms-conditions ul {
+        padding: 0; }
       #footer .footer-wrapper .terms-conditions li {
         display: block;
         margin-top: auto;
@@ -499,7 +501,8 @@ li.nav-toggle {
       text-align: center; }
       #footer .footer-wrapper .social ul {
         display: flex;
-        justify-content: center; }
+        justify-content: center;
+        padding: 0; }
         #footer .footer-wrapper .social ul li {
           width: 35px;
           height: auto;

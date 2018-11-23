@@ -3,7 +3,7 @@
 <head>
   <title>Tixpire</title>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
   <link rel="stylesheet" href="assets/css/main.min.css" />
 </head>
 <body>
@@ -14,7 +14,7 @@
         <ul class="main-nav">
             <li class="logo"><a href="https://tixpire.com"><img class="resize" src="assets/img/tixpire-logo.png"></a></li>
           <div id="responsive-nav" class="responsive-nav">
-            <li><a href="https://www.tixpire.com/">HOME</a></li>
+            <li><a href="https://tixpire.com/">HOME</a></li>
             <li><a href="https://tixpire.store/account/login">Login</a></li>
             <!---add this in after map installed
             <li><a href="#">CITY</a></li>--->
@@ -30,8 +30,8 @@
           <div class="popup-wrapper">
             <div class="popup-container">
               <form action="/login" method="post">
-                Username:<input type="text" name="username">
-                Password:<input type="password" name="password">
+                Username:<input type="text" name="username" autocomplete="username">
+                Password:<input type="password" name="password" autocomplete="pasword">
                 <input type="hidden" name="token" value="{{.}}">
                 <input type="submit" value="Login">
               </form>

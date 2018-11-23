@@ -1,0 +1,15 @@
+runtime: go
+api_version: go1
+
+handlers:
+
+- url: /favicon\.ico
+  static_files: assets/img/favicon.ico
+  upload: assets/img/favicon\.ico
+
+- url: /apple-touch-icon-120x120\.png
+  static_files: assets/img/apple-touch-icon-120x120.png
+  upload: assets/img/apple-touch-icon-120x120\.png
+
+- url: /.*
+  script: _go_app
