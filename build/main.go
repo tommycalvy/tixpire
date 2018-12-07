@@ -8,9 +8,6 @@ import (
 	"google.golang.org/appengine"
 	"net/http"
 	"html/template"
-	"log"
-	"io/ioutil"
-	"url"
 )
 
 var tpl *template.Template

@@ -3,50 +3,13 @@ api_version: go1
 
 handlers:
 
+- url: /favicon\.ico
+  static_files: assets/img/favicon.ico
+  upload: assets/img/favicon\.ico
 
-- url: /favicon.ico
-  static_files: build/assets/img/favicon.png
-  upload: build/assets/img/favicon.png
-# Handle the main page by serving the index page.
-# Note the $ to specify the end of the path, since app.yaml does prefix matching.
-- url: /$
-  static_files: build/index.html
-  upload: build/index.html
-
-
-# Handle folder urls by serving the index.html page inside.
-- url: /(.*)/$
-  static_files: build/\1/index.html
-  upload: build/.*/index.html
-
-# Handle nearly every other file by just serving it.
-- url: /(.+)
-  static_files: build/\1
-  upload: build/(.*)
+- url: /apple-touch-icon-120x120\.png
+  static_files: assets/img/apple-touch-icon-120x120.png
+  upload: assets/img/apple-touch-icon-120x120\.png
 
 - url: /.*
   script: _go_app
-
-
-# Recommended file skipping declaration from the GAE tutorials
-skip_files:
-  - ^(.*/)?app\.yaml
-  - ^(.*/)?app\.yml
-  - ^(.*/)?#.*#
-  - ^(.*/)?.*~
-  - ^(.*/)?.*\.py[co]
-  - ^(.*/)?.*/RCS/.*
-  - ^(.*/)?\..*
-  - ^(.*/)?tests$
-  - ^(.*/)?test$
-  - ^test/(.*/)?
-  - ^COPYING.LESSER
-  - ^README\..*
-  - \.gitignore
-  - ^\.git/.*
-  - \.*\.lint$
-  - ^fabfile\.py
-  - ^testrunner\.py
-  - ^grunt\.js
-  - ^source/(.*/)?
-  - ^node_modules/(.*/)?
