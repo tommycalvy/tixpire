@@ -539,6 +539,15 @@ li.nav-toggle {
   max-height: 500px;
   position: absolute; }
 
+#page-home .infographic-wrapper {
+  display: block;
+  text-align: center;
+  margin-left: auto;
+  margin-right: auto; }
+
+#page-home .infographic {
+  width: 90%; }
+
 #page-home .text-wrapper {
   display: block;
   text-align: center;
