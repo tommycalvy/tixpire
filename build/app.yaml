@@ -13,3 +13,9 @@ handlers:
 
 - url: /.*
   script: _go_app
+
+env_variables:
+  SHOPIFY_API_KEY: 72c05008b6b6d65ccb1900adaa011c1f
+  SHOPIFY_API_SECRET: 1b6a17c577c2e90fbb0cefe56410b45b
+  SHOPIFY_API_REDIRECT: "https://tixpire.appspot.com/install"
+  SESSION_SECRET: r1vQcqdvy7sUS3fvpdQQhuFc0kUk8vDA

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>{{.AppName}}</title>
+  <script src="https://cdn.shopify.com/s/assets/external/app.js"></script>
+  <script type="text/javascript">
+  ShopifyApp.init({
+    apiKey: '{{.APIKey}}',
+    shopOrigin: '{{.Shop}}'
+  });
+  function update(shop) {
+    var updateRes = document.getElementById("updateRes");
+    var myRequest = new Request('https://tixpire.appspot.com/update?shop=' + shop);
+    fetch(myRequest).then(res => {
+      return res.text().then(function(text) {
+        updateRes.innerHTML = text;
+        updateRes.style.display = "block";
+        setTimeout(function() {
+          updateRes.style.display = "none";
+        }, 5000);
+      });
+    });
+  }
+  </script>
+  <link rel="stylesheet" href="assets/css/admin.css" />
+</head>
+<body>
+  <h1>Welcome to {{.AppName}}</h1>
+  <p>You're currently logged in as: {{.Shop}}</p>
+  <button onclick="update({{.Shop}})">Update Checkout Button</button>
+  <p id="updateRes">Update was a success!</p>
+</body>
+</html>
