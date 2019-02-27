@@ -24,6 +24,32 @@
       });
     });
   }
+  function addCheckout(shop) {
+    var addCheck = document.getElementById("addCheckoutRes");
+    var myRequest = new Request('https://tixpire.appspot.com/addCheckout?shop=' + shop);
+    fetch(myRequest).then(res => {
+      return res.text().then(function(text) {
+        updateRes.innerHTML = text;
+        updateRes.style.display = "block";
+        setTimeout(function() {
+          updateRes.style.display = "none";
+        }, 5000);
+      });
+    });
+  }
+  function addProduct(shop) {
+    var addCheck = document.getElementById("addProductRes");
+    var myRequest = new Request('https://tixpire.appspot.com/addProduct?shop=' + shop);
+    fetch(myRequest).then(res => {
+      return res.text().then(function(text) {
+        updateRes.innerHTML = text;
+        updateRes.style.display = "block";
+        setTimeout(function() {
+          updateRes.style.display = "none";
+        }, 5000);
+      });
+    });
+  }
   </script>
   <link rel="stylesheet" href="assets/css/admin.css" />
 </head>
@@ -32,5 +58,9 @@
   <p>You're currently logged in as: {{.Shop}}</p>
   <button onclick="update({{.Shop}})">Update Checkout Button</button>
   <p id="updateRes">Update was a success!</p>
+  <div>
+    <button onclick="addProduct({{.Shop}})">Add Checkout Page</button>
+    <p id="addProductRes">Add Checkout Page Was A Success</p>
+  </div>
 </body>
 </html>

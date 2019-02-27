@@ -12,12 +12,14 @@ import (
 	"github.com/gorilla/sessions"
 	"github.com/dsoprea/goappenginesessioncascade"
 	"github.com/LarryBattle/nonce-golang"
+	//"github.com/logpacker/PayPal-Go-SDK"
 	"net/http"
 	"net/url"
 	"html/template"
 	"strings"
 	"os"
 	"io"
+	"io/ioutil"
 )
 
 var tpl *template.Template
@@ -266,7 +268,27 @@ func serveUpdate(w http.ResponseWriter, r *http.Request) {
 		log.Debugf(ctx, "Asset Err: %s", assetErr)
 		http.Error(w, assetErr.Error(), http.StatusInternalServerError)
 	}
-	assetValue := strings.Replace(asset.Value, "Tixpire Payments", "Pay Over Time", 1)
+
+	assetData, dataErr := ioutil.ReadFile("product-page-button.liquid")
+	if dataErr != nil {
+		log.Debugf(ctx, "Error reading checkout.liquid file: %s", dataErr)
+	}
+	button := string(assetData)
+	var indexTop int
+	var indexBottom int
+	if shop == "tasteoftravel.myshopify.com" {
+		indexTop = strings.Index(assetValue, "</button>\n\n{% endif %}\n<!-- end Bold code -->")
+		indexTop = indexTop + len("</button>\n\n{% endif %}\n<!-- end Bold code -->")
+		indexBottom = strings.Index(assetValue, "</div>\n            </form>\n\n          </div>\n\n          <div class=\"product-single__description rte\" itemprop=\"description\">\n            {{ product.description }}\n          </div>")
+	} else {
+		indexTop = strings.Index(assetValue, "{% endif %}\n              </div>")
+		indexTop = indexTop + len("{% endif %}\n              </div>")
+		indexBottom = strings.Index(assetValue, "{% endform %}\n\n          </div>")
+	}
+
+	indexBottom = indexBottom - 1
+	newAsset := assetValue[:indexTop] + button + assetValue[indexBottom:]
+	assetValue := strings.Replace(asset.Value, "Tixpire Payments", "PAY OVER TIME", 1)
 
 	assetChange := api.NewAsset()
 	assetChange.Key = "snippets/ajax-cart-template.liquid"
@@ -280,10 +302,247 @@ func serveUpdate(w http.ResponseWriter, r *http.Request) {
 	return
 }
 
+func serveAddCheckout(w http.ResponseWriter, r *http.Request) {
+	ctx := appengine.NewContext(r)
+	log.Debugf(ctx, "update RAN")
+	session := getSession(r)
+	params := r.URL.Query()
+
+	shop := params["shop"][0]
+	session.Values["current_shop"] = shop
+	err := session.Save(r, w)
+	if err != nil {
+		panic(err)
+	}
+
+	var shopEntity []Shop
+	if _, ok := tokens[shop]; !ok {
+		log.Debugf(ctx, "No token stored interally. Checking datastore...")
+		q := datastore.NewQuery("Shop").Filter("Name =", shop)
+		_, err := q.GetAll(ctx, &shopEntity)
+		log.Debugf(ctx, "shopEntity: %s", shopEntity)
+		if err != nil || len(shopEntity) == 0 {
+			// Handle error.
+			state := nonce.NewToken()
+			log.Debugf(ctx, "No access token")
+			http.Redirect(w, r, app.AuthorizeURL(shop, "read_themes,write_themes", state), 302)
+			return
+		}
+		tokens[shop] = shopEntity[0].Token
+		log.Debugf(ctx, "shopEntity token: %s", shopEntity[0].Token)
+	}
+	uri := "https://" + shop
+	api = &shopify.API {
+		URI: uri,
+		Token: tokens[shop],
+		Secret: os.Getenv("SHOPIFY_API_SECRET"),
+		Context: ctx,
+	}
+	log.Debugf(ctx, "api initialized: %s", api)
+
+	themes, themesErr := api.Themes()
+	log.Debugf(ctx, "themes api called")
+	var themeId int64
+	if themesErr != nil {
+		log.Debugf(ctx, "Themes Error: %s", themesErr)
+		http.Error(w, themesErr.Error(), http.StatusInternalServerError)
+	}
+
+	for i := 0; i < len(themes); i++ {
+		if (themes[i].Role == "main") {
+			themeId = themes[i].Id
+		}
+	}
+	log.Debugf(ctx, "Theme id: %s", themeId)
+
+	assetData, dataErr := ioutil.ReadFile("checkout.liquid")
+	if dataErr != nil {
+		log.Debugf(ctx, "Error reading checkout.liquid file: %s", dataErr)
+	}
+
+	asset := api.NewAsset()
+	asset.Key = "templates/page.checkout.liquid"
+	asset.ThemeId = themeId
+	asset.Value = string(assetData)
+	assetErr := asset.Save()
+	if assetErr != nil {
+  	log.Debugf(ctx, "Error saving asset: %s", assetErr)
+	}
+	io.WriteString(w, "Add Checkout Page Was A Success!")
+	return
+}
+
+func serveAddProduct(w http.ResponseWriter, r *http.Request) {
+	ctx := appengine.NewContext(r)
+	log.Debugf(ctx, "update RAN")
+	session := getSession(r)
+	params := r.URL.Query()
+
+	shop := params["shop"][0]
+	session.Values["current_shop"] = shop
+	err := session.Save(r, w)
+	if err != nil {
+		panic(err)
+	}
+
+	var shopEntity []Shop
+	if _, ok := tokens[shop]; !ok {
+		log.Debugf(ctx, "No token stored interally. Checking datastore...")
+		q := datastore.NewQuery("Shop").Filter("Name =", shop)
+		_, err := q.GetAll(ctx, &shopEntity)
+		log.Debugf(ctx, "shopEntity: %s", shopEntity)
+		if err != nil || len(shopEntity) == 0 {
+			// Handle error.
+			state := nonce.NewToken()
+			log.Debugf(ctx, "No access token")
+			http.Redirect(w, r, app.AuthorizeURL(shop, "read_themes,write_themes", state), 302)
+			return
+		}
+		tokens[shop] = shopEntity[0].Token
+		log.Debugf(ctx, "shopEntity token: %s", shopEntity[0].Token)
+	}
+	uri := "https://" + shop
+	api = &shopify.API {
+		URI: uri,
+		Token: tokens[shop],
+		Secret: os.Getenv("SHOPIFY_API_SECRET"),
+		Context: ctx,
+	}
+	log.Debugf(ctx, "api initialized: %s", api)
+
+	themes, themesErr := api.Themes()
+	log.Debugf(ctx, "themes api called")
+	var themeId int64
+	if themesErr != nil {
+		log.Debugf(ctx, "Themes Error: %s", themesErr)
+		http.Error(w, themesErr.Error(), http.StatusInternalServerError)
+	}
+
+	for i := 0; i < len(themes); i++ {
+		if (themes[i].Role == "main") {
+			themeId = themes[i].Id
+		}
+	}
+	log.Debugf(ctx, "Theme id: %s", themeId)
+
+	assetParams := url.Values{}
+	assetParams.Set("asset[key]", "sections/product-template.liquid")
+
+	asset, assetErr := api.Asset(themeId, assetParams)
+	if assetErr != nil {
+		log.Debugf(ctx, "Asset Err: %s", assetErr)
+		http.Error(w, assetErr.Error(), http.StatusInternalServerError)
+	}
+	assetValue := asset.Value
+
+	assetData, dataErr := ioutil.ReadFile("product-page-button.liquid")
+	if dataErr != nil {
+		log.Debugf(ctx, "Error reading checkout.liquid file: %s", dataErr)
+	}
+	button := string(assetData)
+	var indexTop int
+	var indexBottom int
+	if shop == "tasteoftravel.myshopify.com" {
+		indexTop = strings.Index(assetValue, "</button>\n\n{% endif %}\n<!-- end Bold code -->")
+		indexTop = indexTop + len("</button>\n\n{% endif %}\n<!-- end Bold code -->")
+		indexBottom = strings.Index(assetValue, "</div>\n            </form>\n\n          </div>\n\n          <div class=\"product-single__description rte\" itemprop=\"description\">\n            {{ product.description }}\n          </div>")
+	} else {
+		indexTop = strings.Index(assetValue, "{% endif %}\n              </div>")
+		indexTop = indexTop + len("{% endif %}\n              </div>")
+		indexBottom = strings.Index(assetValue, "{% endform %}\n\n          </div>")
+	}
+
+	indexBottom = indexBottom - 1
+	newAsset := assetValue[:indexTop] + button + assetValue[indexBottom:]
+
+
+	assetChange := api.NewAsset()
+	assetChange.Key = "sections/product-template.liquid"
+	assetChange.ThemeId = themeId
+	assetChange.Value = newAsset
+	assetChangeErr := assetChange.Save()
+	if assetChangeErr != nil {
+  	log.Debugf(ctx, "Error saving asset: %s", assetChangeErr)
+	}
+
+	w.Header().Set("Content-Type", "text/plain")
+	io.WriteString(w, newAsset)
+	return
+}
+
+func serveGetTemplate(w http.ResponseWriter, r *http.Request) {
+	ctx := appengine.NewContext(r)
+	log.Debugf(ctx, "update RAN")
+	session := getSession(r)
+	params := r.URL.Query()
+
+	shop := params["shop"][0]
+	session.Values["current_shop"] = shop
+	err := session.Save(r, w)
+	if err != nil {
+		panic(err)
+	}
+
+	var shopEntity []Shop
+	if _, ok := tokens[shop]; !ok {
+		log.Debugf(ctx, "No token stored interally. Checking datastore...")
+		q := datastore.NewQuery("Shop").Filter("Name =", shop)
+		_, err := q.GetAll(ctx, &shopEntity)
+		log.Debugf(ctx, "shopEntity: %s", shopEntity)
+		if err != nil || len(shopEntity) == 0 {
+			// Handle error.
+			state := nonce.NewToken()
+			log.Debugf(ctx, "No access token")
+			http.Redirect(w, r, app.AuthorizeURL(shop, "read_themes,write_themes", state), 302)
+			return
+		}
+		tokens[shop] = shopEntity[0].Token
+		log.Debugf(ctx, "shopEntity token: %s", shopEntity[0].Token)
+	}
+	uri := "https://" + shop
+	api = &shopify.API {
+		URI: uri,
+		Token: tokens[shop],
+		Secret: os.Getenv("SHOPIFY_API_SECRET"),
+		Context: ctx,
+	}
+	log.Debugf(ctx, "api initialized: %s", api)
+
+	themes, themesErr := api.Themes()
+	log.Debugf(ctx, "themes api called")
+	var themeId int64
+	if themesErr != nil {
+		log.Debugf(ctx, "Themes Error: %s", themesErr)
+		http.Error(w, themesErr.Error(), http.StatusInternalServerError)
+	}
+
+	for i := 0; i < len(themes); i++ {
+		if (themes[i].Role == "main") {
+			themeId = themes[i].Id
+		}
+	}
+	log.Debugf(ctx, "Theme id: %s", themeId)
+
+	assetParams := url.Values{}
+	assetParams.Set("asset[key]", "sections/product-template.liquid")
+
+	asset, assetErr := api.Asset(themeId, assetParams)
+	if assetErr != nil {
+		log.Debugf(ctx, "Asset Err: %s", assetErr)
+		http.Error(w, assetErr.Error(), http.StatusInternalServerError)
+	}
+	w.Header().Set("Content-Type", "text/plain")
+	io.WriteString(w, asset.Value)
+	return
+}
+
 func main() {
 	http.HandleFunc("/install", serveInstall)
 	http.HandleFunc("/admin", serveAdmin)
 	http.HandleFunc("/update", serveUpdate)
+	http.HandleFunc("/addCheckout", serveAddCheckout)
+	http.HandleFunc("/addProduct", serveAddProduct)
+	http.HandleFunc("/getTemplate", serveGetTemplate)
 	//http.HandleFunc("/shopify/app_proxy/", serveAppProxy)
 	http.Handle("/assets/", http.StripPrefix("/assets", http.FileServer(http.Dir("./assets"))))
 	http.HandleFunc("/", indexHandler)

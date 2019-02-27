@@ -1,0 +1,115 @@
+{% comment %} Tixpire Checkout Button Code Start {% endcomment %}
+{% if current_variant.available %}
+  <div class="tixpire-container">
+    <div class="tixpire-product" tooltip="Pay this purchase over 3 months by clicking this button.">
+      PAY OVER TIME
+    </div>
+  </div>
+  <script>
+    document.getElementsByClassName('tixpire-product')[0].addEventListener('click', function (event) {
+      var str = document.getElementById("ProductPrice").innerHTML;
+      str = str.replace(/<!--(.*?)-->/gm, "");
+      str = str.replace(",", "");
+      str = str.replace("\"", "");
+      str = str.replace("$", "");
+      str = str.trim();
+      var price = parseFloat(str);
+      var qty = document.getElementById("Quantity")
+      if (qty !== null) {
+        qty = parseInt(qty.value, 10);
+      } else {
+        qty = 1;
+      }
+      var totalDue = parseFloat(price * qty).toFixed(2);
+      var packageTitle = document.getElementsByClassName('product-single__title')[0].innerHTML;
+      packageTitle = packageTitle.trim();
+      var variants = document.getElementsByClassName('single-option-selector__radio');
+      if (variants.length > 0) {
+        var variant;
+        for (var i = 0; i < variants.length; i++) {
+          if (variants[i].type === "radio" && variants[i].checked) {
+            variant = variants[i].value;
+            }
+        }
+        packageTitle = packageTitle + " - " + variant;
+      }
+      if (qty > 1) {
+        packageTitle = packageTitle + " - Qty: " + qty;
+      }
+      window.location.href="https://forms.zohopublic.com/tixpire/form/TasteofTravel/formperma/ebE-yc7T4QhNBkJpnw4KEF9eQsH775XW2dUXxMt9blU?trip_package=" + packageTitle + "&total_due=" + totalDue;
+    });
+  </script>
+  {% style %}
+    .tixpire-container {
+      width: 100%;
+    }
+    .tixpire-product {
+      display: inline-block;
+      cursor: pointer;
+      font-family: "Montserrat","HelveticaNeue","Helvetica Neue",sans-serif;
+      font-weight: 400;
+      font-style: normal;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      width: 175px;
+      height: 50px;
+      font-size: 0.76471em;
+      background-color: #e1413d;
+      color: white;
+      text-decoration: none;
+      border-style: solid;
+      border-color: white;
+      padding-top: 13px;
+      margin-top: 15px;
+      margin-bottom: 15px;
+    }
+    .tixpire-product:hover {
+      background-color: white;
+      color: rgb(54, 20, 93);
+      transition: 0.3s ease-out;
+      border-color: rgb(54, 20, 93);
+    }
+    [tooltip]{
+  	  position:relative;
+  	  display:inline-block;
+	  }
+    [tooltip]::before {
+      content: "";
+      position: absolute;
+      top:100%;
+      left:50%;
+      transform: translateX(-50%) translatey(-100%) rotate(-180deg);
+      border-width: 4px 6px 0 6px;
+      border-style: solid;
+      margin-top:8px;
+      border-color: rgba(0,0,0,0.7) transparent transparent     transparent;
+      z-index: 99;
+      opacity:0;
+	  }
+    [tooltip]::after {
+      content: attr(tooltip);
+      position: absolute;
+      left:50%;
+      top:100%;
+      transform: translateX(-50%) translateY(0%);
+      transition: 0.3s ease-out;
+      background: rgba(0,0,0,0.7);
+      margin-top:8px;
+      text-align: center;
+      color: #fff;
+      padding:4px 2px;
+      font-size: 12px;
+      min-width: 300px;
+      border-radius: 5px;
+      pointer-events: none;
+      padding: 4px 4px;
+      z-index:99;
+      opacity:0;
+	  }
+    [tooltip]:hover::after,
+    [tooltip]:hover::before {
+   	  opacity:1
+	  }
+  {% endstyle %}
+{% endif %}
+{% comment %} Tixpire Checkout Button Code End {% endcomment %}
