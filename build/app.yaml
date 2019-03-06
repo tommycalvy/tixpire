@@ -19,3 +19,5 @@ env_variables:
   SHOPIFY_API_SECRET: 1b6a17c577c2e90fbb0cefe56410b45b
   SHOPIFY_API_REDIRECT: "https://tixpire.appspot.com/install"
   SESSION_SECRET: r1vQcqdvy7sUS3fvpdQQhuFc0kUk8vDA
+  PAYPAL_CLIENT_ID: Aby60A3ILy2F4aFcZhqaPSxAy6m3BhqNzTxcrnNh6Lf_qXD2I1CBL_f2tgSRxjcjtdUxVdfF-BJLAVq_
+  PAYPAL_SECRET_ID: EIIpZGLcYXPT6A9Yh3iLjquwBt2Pc8EyF5Po-d-9Gfofsx5A5Vpf1allrTfOXU899soCasNL8gZB0MVg

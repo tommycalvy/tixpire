@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>{{.Vendor}} Checkout</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <link rel="stylesheet" href="/assets/css/checkout.css">
+</head>
+<body>
+  <div class="content">
+    <div class="wrap">
+      <div class="payment">
+        <div class="payment-header">
+          <h1 class="vendor-name">{{.Vendor}}</h1>
+        </div>
+        <form action="/order" method="post">
+          <div class="payment-option">
+            <fieldset class="payment-option-selector">
+              <input type="radio" id="payment-option-1" name="payment-options" value="payment-option-1" checked>
+              <label for="payment-option-1">Payment Option 1</label>
+              <input type="radio" id="payment-option-2" name="payment-options" value="payment-option-2">
+              <label for="payment-option-2">Payment Option 2</label>
+              <input type="radio" id="payment-option-3" name="payment-options" value="payment-option-3">
+              <label for="payment-option-3">Payment Option 3</label>
+            </fieldset>
+          </div>
+          <div class="payment-express">
+            <h3>Express Checkout</h3>
+          </div>
+          <div class="payment-main">
+            <div class="billing-address">
+              <h3>Billing Address</h3>
+              <div class="name">
+                <div class="first-name">
+                  <input type="text" name="firstname" placeholder="First Name">
+                </div>
+                <div class="last-name">
+                  <input type="text" name="lastname" placeholder="Last Name">
+                </div>
+              </div>
+              <div class="address">
+                <input type="text" name="address" placeholder="Address">
+              </div>
+              <div class="address2">
+                <input type="text" name="address2" placeholder="Apartment, suite, etc. (optional)">
+              </div>
+              <div class="city">
+                <input type="text" name="city" placeholder="City">
+              </div>
+              <div class="city-state-zip">
+                <div class="country">
+                  <input type="text" name=country name="country" placeholder="Country">
+                </div>
+                <div class="state">
+                  <input type="text" name="state" placeholder="State">
+                </div>
+                <div class="zip">
+                  <input type="text" name="zip" placeholder="Zipcode">
+                </div>
+              </div>
+              <div class="email">
+                <input type="text" name="email" placeholder="Email">
+              </div>
+            </div>
+            <div class="payment-information">
+              <h3>Payment</h3>
+
+              <div class="cardholder-name">
+                <div class="cardholder-firstname">
+                  <input type="text" name="cardholderFirstName" placeholder="Cardholder Firstname">
+                </div>
+                <div class="cardholder-lastname">
+                  <input type="text" name="cardholderLastName" placeholder="Cardholder Lastname">
+                </div>
+              </div>
+              <div class="cardnumber">
+                <input type="text" name="cardnumber" placeholder="Card Number">
+              </div>
+              <div class="card-details">
+                <div class="expmonth">
+                  <input type="text" name="expmonth" placeholder="Exp. Month">
+                </div>
+                <div class="expyear">
+                  <input type="text"  name="expyear" placeholder="Exp. Year">
+                </div>
+                <div class="cvv">
+                  <input type="text" name="cvv" placeholder="CVV">
+                </div>
+              </div>
+            </div>
+            <div class="submit">
+              <div class="shipping-address-check">
+                <h4>Is your shipping address the same as your billing address?</h4>
+                <input type="checkbox" checked="checked" name="sameadr">
+              </div>
+              <button type="submit" value="order">Order</button>
+            </div>
+          </div>
+        </form>
+      </div>
+      <div class="products">
+        <div class="event1">
+          <h2>{{.Event}}</h2>
+          <h4>{{.Variant}}</h4>
+          <h4>{{.Date}}</h4>
+          <h4>Quantity: {{.Qty}}</h4>
+          <div class="event-price">
+            <h4>Price</h4>
+            <h4>Number</h4>
+          </div>
+        </div>
+        <div class="event2">
+          <h2>Name of The Event</h2>
+          <h4>Name of Variant</h4>
+          <h4>Date and Time</h4>
+          <div class="event-price">
+            <h4>Price</h4>
+            <h4>Number</h4>
+          </div>
+        </div>
+        <div class="total-price">
+          <h3>{{.TotalDue}}</h3>
+          <h3>Number</h3>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

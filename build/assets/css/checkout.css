@@ -1,0 +1,122 @@
+body {
+  margin: 0;
+  padding: 0;
+}
+.wrap {
+  display: grid;
+  grid-template-columns: 65% 35%;
+  font-family: arial;
+}
+* {
+  font-weight: normal;
+}
+.payment {
+  padding: 20px;
+  background-color: rgb(255, 230, 215);
+}
+.payment-option {
+  text-align: center;
+}
+.payment-option-selector {
+  display: flex;
+  justify-content: space-evenly;
+  flex-wrap: wrap;
+  border: none;
+  width: 85%;
+}
+.payment-option-selector input {
+  position: fixed;
+  opacity: 0;
+}
+.payment-option-selector label {
+  cursor: pointer;
+  padding: 6px;
+  border-style: solid;
+  border-color: black;
+  border-width: thin;
+}
+.payment-option-selector input:checked + label {
+  border-color: black;
+  box-shadow: 0px 0px 10px 1px darkblue;
+}
+.payment-express {
+  text-align: center;
+}
+.payment-main div {
+  width: 95%;
+  padding-bottom: 2px;
+}
+.payment-main input {
+  padding-top: 13px;
+  padding-left: 10px;
+  padding-bottom: 13px;
+  width: 100%;
+  border-style: solid;
+  border-radius: 6px;
+  border-width: thin;
+  border-color: darkgrey;
+  font-size: 14px;
+}
+.name {
+  display: flex;
+}
+.last-name {
+  padding-left: 20px;
+}
+.city-state-zip {
+  display: flex;
+}
+.state {
+  padding-left: 20px;
+}
+.zip {
+  padding-left: 20px;
+}
+.cardholder-name {
+  display: flex;
+}
+.cardholder-lastname {
+  padding-left: 20px;
+}
+.card-details {
+  display: flex;
+}
+.expyear {
+  padding-left: 20px;
+}
+.cvv {
+  padding-left: 20px;
+}
+.submit {
+  text-align: center;
+}
+.shipping-address-check {
+  display: flex;
+}
+.submit button {
+  width: 50%;
+  height: 30px;
+  background-color: red;
+  border-style: solid;
+  border-color: rgb(255, 230, 215);
+  font-size: 14px;
+  transition: 0.3s ease-out;
+}
+.submit button:hover {
+  border-color: purple;
+  background-color: white;
+}
+.products {
+  padding: 20px;
+  background-color: rgb(255, 210, 195);
+  border-left: 1px solid rgb(170, 150, 100);
+}
+.event-price {
+  display: flex;
+  justify-content: space-between;
+}
+.total-price {
+  display: flex;
+  justify-content: space-between;
+  border-top: 1px solid rgb(120, 100, 90);
+}
