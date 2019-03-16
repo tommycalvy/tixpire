@@ -1,5 +1,26 @@
 body {
   margin: 0;
   padding: 0;
-  background-color: lightgrey;
+}
+.wrap {
+  font-family: "arial";
+}
+* {
+  font-weight: normal;
+}
+.thankyou-title {
+  text-align: center;
+}
+.event-info {
+  text-align: center;
+}
+.layaway-info {
+  text-align: center;
+  border-style: solid;
+  border-radius: 10px;
+  margin: 30px;
+}
+.layaway-info-table {
+  display: grid;
+  grid-template-columns: 30% 40% 30%;
 }

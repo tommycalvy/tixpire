@@ -9,23 +9,47 @@
 <body>
   <div class="content">
     <div class="wrap">
-      <h1>Thank You Page</h1>
-      <p>
-        FirstName: {{.FName}}
-        LastName: {{.LName}}
-    		Address: {{.Address}}
-    		Address2: {{.Address2}}
-    		City: {{.City}}
-    		State: {{.State}}
-    		Zip {{.Zip}}
-    		Email {{.Email}}
-    		CardFName {{.CardFName}}
-    		CardLName {{.CardLName}}
-    		CardNum {{.CardNum}}
-    		ExpMonth {{.ExpMonth}}
-    		ExpYear {{.ExpYear}}
-    		CVV {{.CVV}}
-      </p>
+      <div class="thankyou-title">
+        <h1>Thank You For Buying From {{.Vendor}}</h1>
+      </div>
+      <div class="event-info">
+        <h5>
+          {{.Event}}<br>
+          {{.Variant}}<br>
+          {{.Date}}<br>
+          {{.Amount}}<br>
+        </h5>
+      </div>
+      <div class="layaway-info">
+        <h2>Payment Schedule</h2>
+        <div class="layaway-info-table">
+          <div class="payment-num">
+            <h3>Payment Number</h3>
+            <div class="cycle">
+              {{range .Num}}
+              <h4>1</h4>
+              {{end}}
+            </div>
+          </div>
+          <div class="schedule-date">
+            <h3>Schedule Date</h3>
+            <div class="dates">
+              {{range .Dates}}
+                <h4>January 1st, 2020</h4>
+              {{end}}
+            </div>
+          </div>
+          <div class="amount-title">
+            <h3>Amount</h3>
+            <div class="amount">
+              {{range .Amount}}
+                $555.55
+
+              {{end}}
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </body>

@@ -15,86 +15,45 @@
         </div>
         <form action="/order" method="post">
           <div class="payment-option">
-            <fieldset class="payment-option-selector">
-              <input type="radio" id="payment-option-1" name="payment-options" value="payment-option-1" checked>
-              <label for="payment-option-1">Payment Option 1</label>
-              <input type="radio" id="payment-option-2" name="payment-options" value="payment-option-2">
-              <label for="payment-option-2">Payment Option 2</label>
-              <input type="radio" id="payment-option-3" name="payment-options" value="payment-option-3">
-              <label for="payment-option-3">Payment Option 3</label>
-            </fieldset>
+            {{range .Plan}}
+              <input type="radio" id={{.Name}} name="payment-plan" value={{.Id}} {{.Checked}}>
+              <label for={{.Name}}>{{.Cycles}} Payments <br> ${{.Amount}} per {{.Interval}} weeks </label>
+              <input type="hidden" name="cycles" value={{.Cycles}}>
+              <input type="hidden" name="total-days" value={{.Days}}>
+            {{end}}
+            <input type="hidden" name="event" value={{.Event}}>
+            <input type="hidden" name="variant" value={{.Variant}}>
           </div>
-          <div class="payment-express">
-            <h3>Express Checkout</h3>
-          </div>
-          <div class="payment-main">
-            <div class="billing-address">
-              <h3>Billing Address</h3>
-              <div class="name">
-                <div class="first-name">
-                  <input type="text" name="firstname" placeholder="First Name">
-                </div>
-                <div class="last-name">
-                  <input type="text" name="lastname" placeholder="Last Name">
-                </div>
-              </div>
-              <div class="address">
-                <input type="text" name="address" placeholder="Address">
-              </div>
-              <div class="address2">
-                <input type="text" name="address2" placeholder="Apartment, suite, etc. (optional)">
-              </div>
-              <div class="city">
-                <input type="text" name="city" placeholder="City">
-              </div>
-              <div class="city-state-zip">
-                <div class="country">
-                  <input type="text" name=country name="country" placeholder="Country">
-                </div>
-                <div class="state">
-                  <input type="text" name="state" placeholder="State">
-                </div>
-                <div class="zip">
-                  <input type="text" name="zip" placeholder="Zipcode">
-                </div>
-              </div>
-              <div class="email">
-                <input type="text" name="email" placeholder="Email">
-              </div>
-            </div>
-            <div class="payment-information">
-              <h3>Payment</h3>
+          <div class="layaway-info">
+            <h2>Payment Schedule</h2>
+            <div class="layaway-info-table">
 
-              <div class="cardholder-name">
-                <div class="cardholder-firstname">
-                  <input type="text" name="cardholderFirstName" placeholder="Cardholder Firstname">
-                </div>
-                <div class="cardholder-lastname">
-                  <input type="text" name="cardholderLastName" placeholder="Cardholder Lastname">
+              <div class="payment-num">
+                <h3>Payment Number</h3>
+                <div class="cycle">
+                  {{range .Num}}
+
+                  {{end}}
                 </div>
               </div>
-              <div class="cardnumber">
-                <input type="text" name="cardnumber" placeholder="Card Number">
+              <div class="schedule-date">
+                <h3>Schedule Date</h3>
+                <div class="dates">
+                  {{range .Dates}}
+                  {{end}}
+                </div>
               </div>
-              <div class="card-details">
-                <div class="expmonth">
-                  <input type="text" name="expmonth" placeholder="Exp. Month">
-                </div>
-                <div class="expyear">
-                  <input type="text"  name="expyear" placeholder="Exp. Year">
-                </div>
-                <div class="cvv">
-                  <input type="text" name="cvv" placeholder="CVV">
+              <div class="amount-title">
+                <h3>Amount</h3>
+                <div class="amount">
+                  {{range .Amount}}
+                  {{end}}
                 </div>
               </div>
             </div>
-            <div class="submit">
-              <div class="shipping-address-check">
-                <h4>Is your shipping address the same as your billing address?</h4>
-                <input type="checkbox" checked="checked" name="sameadr">
-              </div>
-              <button type="submit" value="order">Order</button>
-            </div>
+          </div>
+          <div class="submit">
+            <button type="submit" value="order">Order</button>
           </div>
         </form>
       </div>

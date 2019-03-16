@@ -89,6 +89,9 @@ typings/
 # dotenv environment variables file
 .env
 
+# app.yaml Google App Engine
+.app.yaml
+
 # parcel-bundler cache (https://parceljs.org/)
 .cache
 
